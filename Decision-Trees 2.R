@@ -15,7 +15,7 @@ library(pdp)
 # model accuracy
 library(Metrics)
 
-# QUESTION ONE : LOADING DATA
+# LOADING DATA
 library(readr)
 drug200 <- read_csv("drug200.csv")
 View(drug200)
@@ -44,7 +44,7 @@ head(drug200)
 # Check for any missing values
 colSums(is.na(drug200))
 
-# QUESTION TWO : TRAIN AND TEST SET SPLIT
+# TRAIN AND TEST SET SPLIT
 set.seed(123)
 
 split <- initial_split(drug200, prop = 0.8, strata = NULL)
@@ -57,7 +57,7 @@ drug200_test <- testing(split)
 
 str(drug200_test)
 
-# QUESTION THREE : CLASSIFICATION TREE
+# CLASSIFICATION TREE
 # part a
 dt1 <- rpart(
   formula = Drug ~ . , 
@@ -80,7 +80,7 @@ accuracy(actual = drug200_test$Drug,
 # Check Variable importance by plotting
 vip(dt1, num_features = 6, bar = FALSE)
 
-# QUESTION 4: PRUNING - Using cross validation
+# PRUNING - Using cross validation
 
 # Identify the best cp value to use - minimum cp values
 printcp(dt1)
